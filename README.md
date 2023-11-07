@@ -1,5 +1,7 @@
 # Projeto Final Assembly
  Censurador de Arquivos BMP desenvolvido para a disciplina de Arquitetura de Computadores da Universidade Federal da Paraíba - UFPB.
+
+ Alunas: Ana Clara Ferreira Epaminondas, Gleice Heloise de Araujo Silva
  
  Funcionamento do código
 
