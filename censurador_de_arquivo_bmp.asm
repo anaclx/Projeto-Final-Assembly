@@ -24,8 +24,6 @@ includelib \masm32\lib\gdi32.lib
     inputString db 50 dup(0)
     xRequest db "Valor da dimensao X: ", 0h
     X dd ?
-    erro byte "Houve um erro no programa! ", 0h
-    
     yRequest db "Valor da dimensao Y: ", 0h
     Y dd ?    
     alturaRequest db "Altura da censura: ", 0h
@@ -123,7 +121,6 @@ start:
     invoke CreateFile, addr fileName, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL
     mov readFileHandle, eax
     cmp readFileHandle, INVALID_HANDLE_VALUE
-    je houve_erro
 
     ; Abrir o arquivo de saída .bmp
     invoke CreateFile, addr outputFileName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL
@@ -258,13 +255,6 @@ lacoImagem:
         invoke CloseHandle, readFileHandle
         invoke CloseHandle, writeFileHandle
         invoke ExitProcess, 0
-
-    ; Finaliza o programa e aponta erro no monitor
-    houve_erro:
-    invoke CloseHandle, readFileHandle
-    invoke CloseHandle, writeFileHandle
-    invoke WriteConsole, outputHandle, addr erro, sizeof erro, addr writeCount, NULL
-
 
 invoke ExitProcess, 0
 end start
